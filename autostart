@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Wait for display to be fully initialized
+sleep 2
+
+# Get home page from environment variable or use default
+HOME_PAGE=${HOME_PAGE:-"https://example.com"}
+
+# Launch Dillo
+dillo "$HOME_PAGE" &
+
+# Make it fullscreen with wmctrl
+sleep 2
+wmctrl -r :ACTIVE: -b add,fullscreen

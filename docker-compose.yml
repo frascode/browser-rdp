@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  rdp-browser:
+    platform: linux/x86_64 
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3389:3389"
+    environment:
+      - DEFAULT_USER=testuser
+      - DEFAULT_PASSWORD=password
+      - HOME_PAGE=https://google.com
+    volumes:
+      - rdp_home:/home
+    restart: unless-stopped
+    cap_add:
+      - SYS_ADMIN
+
+volumes:
+  rdp_home:

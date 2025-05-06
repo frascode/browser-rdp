@@ -1,14 +1,18 @@
 #!/bin/bash
 
-# Wait for display to be fully initialized
-sleep 2
+# Assicurati che le istanze precedenti siano terminate
+pkill -f Dooble
 
-# Get home page from environment variable or use default
-HOME_PAGE=${HOME_PAGE:-"https://example.com"}
+# Attendi un momento per assicurarsi che eventuali istanze precedenti siano terminate
+sleep 1
 
-# Launch Dillo
-dillo "$HOME_PAGE" &
+chmod +x /opt/dooble/Dooble
 
-# Make it fullscreen with wmctrl
-sleep 2
-wmctrl -r :ACTIVE: -b add,fullscreen
+# Avvia Dooble con l'URL specificato
+/opt/dooble/Dooble --load-url https://whatsmyip.com --full-screen --private &
+
+# Aspetta che la finestra appaia prima di renderla a schermo intero
+sleep 3
+
+# Applica la modalità a schermo intero
+wmctrl -r "Dooble" -b add,fullscreen

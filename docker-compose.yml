@@ -2,7 +2,7 @@ version: '3'
 
 services:
   rdp-browser:
-    platform: linux/x86_64 
+    platform: linux/arm64
     build:
       context: .
       dockerfile: Dockerfile
@@ -11,7 +11,7 @@ services:
     environment:
       - DEFAULT_USER=testuser
       - DEFAULT_PASSWORD=password
-      - HOME_PAGE=https://google.com
+      - HOME_PAGE=https://whatsmyip.com
     volumes:
       - rdp_home:/home
     restart: unless-stopped

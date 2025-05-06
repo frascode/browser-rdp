@@ -2,14 +2,13 @@ FROM ubuntu:22.04
 
 # Set environment variables
 ENV DEBIAN_FRONTEND=noninteractive
-ENV HOME_PAGE="https://example.com"
+ENV HOME_PAGE="https://google.com"
 
 # Install required packages
 RUN apt-get update && apt-get install -y \
     xrdp \
     xorgxrdp \
     openbox \
-    dillo \
     dbus-x11 \
     dbus \
     sudo \
@@ -20,9 +19,39 @@ RUN apt-get update && apt-get install -y \
     psmisc \
     xauth \
     wmctrl \
+    git \
+    wget \
+    build-essential \
+    qtbase5-dev \
+    qtwebengine5-dev \
+    libqt5sql5-sqlite \
+    libqt5svg5-dev \
+    libqt5websockets5-dev \
+    qt5-qmake \
+    qtchooser \
+    libssl-dev \
+    libgcrypt20-dev \
+    zlib1g-dev \
+    cmake \
+    pkg-config \
     python3-xdg \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+
+# Crea directory di lavoro
+WORKDIR /opt
+
+# Clona il repository di Dooble
+RUN git clone https://github.com/textbrowser/dooble.git
+
+# Passa alla directory di Dooble
+WORKDIR /opt/dooble
+
+# Compila Dooble
+RUN qmake -qt=qt5 && \
+    make -j$(nproc)
+
+WORKDIR /
 
 # Configure xrdp
 RUN sed -i 's/max_bpp=32/max_bpp=24/g' /etc/xrdp/xrdp.ini && \

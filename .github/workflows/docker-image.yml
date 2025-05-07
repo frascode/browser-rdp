@@ -27,4 +27,6 @@ jobs:
       with:
         context: .
         push: true
+        build-args: |
+           HOME_PAGE=https://whatsmyip.com
         tags: frascos/browser-rdp:latest

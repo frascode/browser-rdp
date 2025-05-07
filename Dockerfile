@@ -2,7 +2,6 @@ FROM ubuntu:22.04
 
 # Set environment variables
 ENV DEBIAN_FRONTEND=noninteractive
-ENV HOME_PAGE="https://google.com"
 
 # Install required packages
 RUN apt-get update && apt-get install -y \
@@ -42,7 +41,7 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /opt
 
 # Clona il repository di Dooble
-RUN git clone https://github.com/textbrowser/dooble.git
+RUN git clone --depth 1 --branch 2025.04.27 https://github.com/textbrowser/dooble.git
 
 # Passa alla directory di Dooble
 WORKDIR /opt/dooble
@@ -85,6 +84,10 @@ RUN chmod +x /etc/xrdp/startwm.sh
 # Setup the container entrypoint
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
+
+ARG HOME_PAGE
+
+RUN touch /tmp/HOMEPAGE && echo $HOME_PAGE >> /tmp/HOMEPAGE
 
 # Expose port for RDP
 EXPOSE 3389

@@ -9,7 +9,7 @@ sleep 1
 chmod +x /opt/dooble/Dooble
 
 # Avvia Dooble con l'URL specificato
-/opt/dooble/Dooble --load-url https://whatsmyip.com --full-screen --private &
+/opt/dooble/Dooble --load-url $(cat /tmp/HOMEPAGE) --full-screen --private &
 
 # Aspetta che la finestra appaia prima di renderla a schermo intero
 sleep 3

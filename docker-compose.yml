@@ -1,22 +1,16 @@
-version: '3'
-
 services:
   rdp-browser:
     platform: linux/arm64
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        HOME_PAGE: https://whatsmyip.com
     ports:
       - "3389:3389"
     environment:
       - DEFAULT_USER=testuser
       - DEFAULT_PASSWORD=password
-      - HOME_PAGE=https://whatsmyip.com
-    volumes:
-      - rdp_home:/home
     restart: unless-stopped
     cap_add:
       - SYS_ADMIN
-
-volumes:
-  rdp_home:

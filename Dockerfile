@@ -68,21 +68,21 @@ RUN mkdir -p /var/run/dbus && \
 
 # Setup default Openbox config
 RUN mkdir -p /etc/skel/.config/openbox
-COPY --chown=root:root autostart /etc/skel/.config/openbox/
+COPY --chown=root:root scripts/autostart /etc/skel/.config/openbox/
 
 # Setup supervisor for service management
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Setup user management script
-COPY create-user.sh /usr/local/bin/create-user.sh
+COPY scripts/create-user.sh /usr/local/bin/create-user.sh
 RUN chmod +x /usr/local/bin/create-user.sh
 
 # Setup xrdp session startup
-COPY xrdp-session.sh /etc/xrdp/startwm.sh
+COPY scripts/xrdp-session.sh /etc/xrdp/startwm.sh
 RUN chmod +x /etc/xrdp/startwm.sh
 
 # Setup the container entrypoint
-COPY entrypoint.sh /entrypoint.sh
+COPY scripts/entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 ARG HOME_PAGE

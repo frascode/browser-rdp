@@ -28,5 +28,5 @@ jobs:
         context: .
         push: true
         build-args: |
-           HOME_PAGE=https://whatsmyip.com
-        tags: frascos/browser-rdp:latest
+           HOME_PAGE=http://wordpress-wp1.protected-services.svc.cluster.local
+        tags: frascos/browser-rdp:wordpress-wp1

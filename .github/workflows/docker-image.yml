@@ -28,5 +28,5 @@ jobs:
         context: .
         push: true
         build-args: |
-           HOME_PAGE=http://wordpress-wp1.protected-services.svc.cluster.local
-        tags: frascos/browser-rdp:wordpress-wp1
+           HOME_PAGE=http://wordpress-wp2.protected-services.svc.cluster.local
+        tags: frascos/browser-rdp:wordpress-wp2

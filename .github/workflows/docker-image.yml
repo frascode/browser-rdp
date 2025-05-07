@@ -28,5 +28,5 @@ jobs:
         context: .
         push: true
         build-args: |
-           HOME_PAGE=http://web-app-1-svc.protected-services.svc.cluster.local
-        tags: frascos/browser-rdp:web-app-1
+           HOME_PAGE=http://web-app-2-svc.protected-services.svc.cluster.local
+        tags: frascos/browser-rdp:web-app-2
